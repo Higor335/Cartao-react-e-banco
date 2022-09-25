@@ -1,0 +1,36 @@
+.card_list_container{
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+}
+.search_bar{
+  margin:10px 0;
+  background-color:#fff;
+  color:#eaeaea;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  padding:0 10px;
+border-radius: 10px;;
+}
+.search_bar input{
+  border:none;
+  width:300px;
+  margin: 0 5px;
+  outline:none;
+  height: 50px;
+  font-size: 25px;
+}
+
+.span_result{
+  font-size:22px;
+  color:#fff;
+  font-weight: 700;
+}
+.result_container{
+  background-color:#fff;
+}
+.result{
+  border: 1px solid #eaeaea;
+  padding:5px;
+}
