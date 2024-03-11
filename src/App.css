@@ -26,6 +26,17 @@
 li{
   list-style: none;
   position: relative;
-  left: 43%;
+  left: 40%;
   padding: 0.6%;
+}
+
+@media (max-width: 767px) {
+  .menu{
+    position: relative;
+    width: 109%;
+  }
+
+  li{
+    left: 35%;
+  }
 }
