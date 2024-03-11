@@ -1,64 +1,65 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import Card from '../Card';
-import IconBusca from '../../assets/icon-busca.png'
 import './styles.css';
 
 const CardList: React.FC = () => {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('')
+  const [filter, setFilter] = useState('');
+
   useEffect(() => {
-    let consultaAPI = async () => {
-      await api.get('/users')
-        .then(response => {
-          setUsers(response.data)
-          setLoading(false)
-        })
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/users');
+        setUsers(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchData(); // Chama fetchData imediatamente, pois o estado loading é true
+  }, []); // O useEffect só deve executar uma vez, quando o componente é montado
+
+  const handleSearchText = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFilter(event.target.value);
+  };
+
+  const handleDelete = (id: string) => {
+    setUsers(users => users.filter((user: any) => user.id !== id));
+  };
+
+  const displayContacts = () => {
+    let filteredUsers = users;
+
+    if (filter) {
+      filteredUsers = users.filter((user: any) =>
+        user.name.toLowerCase().includes(filter.toLowerCase()) ||
+        user.email.toLowerCase().includes(filter.toLowerCase()) ||
+        user.phone.toLowerCase().includes(filter.toLowerCase()) ||
+        user.address.city.toLowerCase().includes(filter.toLowerCase())
+      );
     }
 
-    if (loading) {
-      consultaAPI();
-    }
-  }, [])
-  function handleSearchText(event: any) {
-    console.log(event.target.value)
-    setFilter(event.target.value)
-  }
-  function handleDelete(id: string) {
-    setUsers(users => users.filter((user: any) => user.id !== id))
-  }
-  function displayContact() {
-    if (filter) {
-      let res = users
-        .filter((user: any) =>
-          user.name.toLowerCase()
-            .includes(filter.toLowerCase()) ||
-          user.email.toLowerCase()
-            .includes(filter.toLowerCase()) ||
-          user.phone.toLowerCase()
-            .includes(filter.toLowerCase()) ||
-          user.address.city.toLowerCase()
-            .includes(filter.toLowerCase())
-          // ).map(usuario => <Card user={usuario} />)
-        ).map(usuario => <Card key={usuario.id} user={usuario} del={handleDelete} />)
-      return (<>
-        <span className="span_result">{res.length} resultados encontrados</span>
-        {res}
-      </>)
-    }
-    else {
-      return users.map(usuario => <Card key={usuario.id} user={usuario} del={handleDelete} />)
-    }
-  }
+    return (
+      <>
+        <span className="span_result">{filteredUsers.length} resultados encontrados</span>
+        {filteredUsers.map((user: any) => (
+          <Card key={user.id} user={user} del={handleDelete} />
+        ))}
+      </>
+    );
+  };
 
   if (loading) {
-    return <div>Carregando..</div>
+    return <div>Carregando..</div>;
   } else {
-    return (<div className="card_list_container">
-      
-      {displayContact()}
-    </div>);
+    return (
+      <div className="card_list_container">
+        {displayContacts()}
+      </div>
+    );
   }
 }
 

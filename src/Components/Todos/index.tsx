@@ -1,35 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 
-// import { Container } from './styles';
+interface Todo {
+  id: number;
+  title: string;
+  completed: boolean;
+}
 
 const Todos: React.FC = () => {
-  const [todos, setTodos] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let consultaApi = async () => {
-      await api.get('/todos')
-        .then((response) => {
-          setTodos(response.data)
-          setLoading(false);
-        })
-    }
+    const fetchData = async () => {
+      try {
+        const response = await api.get('/todos');
+        setTodos(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
+    };
+
     if (loading) {
-      consultaApi();
-      console.count("Carregou")
+      fetchData();
     }
-  }, [todos])
-  //  yarn create vite teste --template react-ts
-  return (<>
+  }, [loading]);
+
+  return (
     <div className="todos_container">
-      {todos.map(todo => (<div key={todo.id} className="todo">
-        <span>{todo.title}</span> - <a>{
-          todo.completed ? 'Concluido' : 'Incompleto'
-        }</a>
-      </div>))}
+      {todos.map(todo => (
+        <div key={todo.id} className="todo">
+          <span>{todo.title}</span> - <a>{todo.completed ? 'Concluido' : 'Incompleto'}</a>
+        </div>
+      ))}
     </div>
-  </>);
+  );
 }
 
 export default Todos;
