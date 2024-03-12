@@ -7,7 +7,7 @@ const Display: React.FC = () => {
   return (<div className="app_wrapper">
     <header>
       <ul className='menu'>
-        <li><Link to="/">Listar</Link></li>
+        <li><Link to="/Cartao-react-e-banco">Listar</Link></li>
         <li><Link to="/buscar">Buscar</Link></li>
         <li><Link to="/sobre">Sobre</Link></li>
       </ul>

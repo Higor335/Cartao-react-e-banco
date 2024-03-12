@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Display />} />
+        <Route path='/Cartao-react-e-banco' element={<Display />} />
         <Route path='/buscar' element={<Search />} />
         <Route path='/listar' element={<Display />} />
         <Route path='/sobre' element={<About />} />
