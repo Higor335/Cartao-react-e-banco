@@ -1,0 +1,35 @@
+.links{
+    color:rgb(38, 0, 255);
+}
+
+.menu{
+    width: 100%;
+    gap: 15%;
+}
+
+h1{
+    color: white;
+}
+
+li{
+    margin-left: -13vh;
+}
+
+p{
+    width: 70%;
+    margin-left: 13%;
+    text-align: justify;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .menu{
+        width: 118%;
+        gap: 20%;
+    }
+    
+    li{
+        margin-left: -7vh;
+    }
+
+}

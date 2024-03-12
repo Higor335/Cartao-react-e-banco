@@ -5,7 +5,7 @@ import IconBusca from '../../assets/icon-busca.png'
 import './styles.css';
 
 const CardSearch: React.FC = () => {
-  const [users, setUsers] = useState<any[]>([]); // Definindo 'users' como um array de qualquer tipo
+  const [users, setUsers] = useState<any[]>([]); 
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('');
 
