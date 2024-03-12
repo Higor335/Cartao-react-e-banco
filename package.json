@@ -1,5 +1,4 @@
 {
-  "homepage":"https://higor335.github.io/Cartao-react-e-banco",
   "name": "teste",
   "private": true,
   "version": "0.0.0",
@@ -8,8 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "build": "vite build",
+    "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
