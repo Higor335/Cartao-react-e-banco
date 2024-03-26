@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ user, del }) => {
       </div>
       <div className="card_right">
         <div className="address_container">
-          <MdLocationOn size={30} />
+          <MdLocationOn size={30} className='location'/>
           <div className="address">
             <span>{user.address.street}</span>
             <span>{user.address.suite}</span>
@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({ user, del }) => {
           </div>
         </div>
         <div className="address_container">
-          <MdPhone size={30} />
+          <MdPhone size={30} className='phone'/>
           <div className="address">
             {user.phone}
           </div>

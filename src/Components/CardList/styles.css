@@ -28,9 +28,17 @@ border-radius: 10px;;
   font-weight: 700;
 }
 .result_container{
-  background-color:#fff;
+  background-color:#ffffff;
 }
 .result{
-  border: 1px solid #eaeaea;
+  border: 1px solid #fffffffa;
   padding:5px;
+}
+
+@media (max-width: 767px) {
+  .card_list_container{    
+    width: 100%;
+    height: auto;
+    display: block;
+  }
 }

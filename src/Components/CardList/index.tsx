@@ -19,8 +19,8 @@ const CardList: React.FC = () => {
       }
     };
 
-    fetchData(); // Chama fetchData imediatamente, pois o estado loading é true
-  }, []); // O useEffect só deve executar uma vez, quando o componente é montado
+    fetchData();
+  }, []);
 
   const handleSearchText = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFilter(event.target.value);
